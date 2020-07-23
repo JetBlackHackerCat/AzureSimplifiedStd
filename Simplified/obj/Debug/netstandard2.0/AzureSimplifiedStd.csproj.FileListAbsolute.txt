@@ -1,0 +1,3 @@
+C:\Users\Malza\Source\Repos\AzureSimplifiedStd\Simplified\obj\Debug\netstandard2.0\AzureSimplifiedStd.AssemblyInfoInputs.cache
+C:\Users\Malza\Source\Repos\AzureSimplifiedStd\Simplified\obj\Debug\netstandard2.0\AzureSimplifiedStd.AssemblyInfo.cs
+C:\Users\Malza\Source\Repos\AzureSimplifiedStd\Simplified\obj\Debug\netstandard2.0\AzureSimplifiedStd.csproj.CoreCompileInputs.cache

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml;
 
 namespace AzureSimplifiedStd.Storage
 {
@@ -136,31 +137,40 @@ namespace AzureSimplifiedStd.Storage
             public TableQuerySegment<DynamicTableEntity> tableQuerySegment;
             public TableContinuationToken token;
         }
-        private StorageUri fileURI;
-        private StorageUri queueURI;
-        private StorageUri blobURI;
-        private StorageUri tableURI;
-        private StorageCredentials creds;
+        private Uri fileURI;
+        private Uri queueURI;
+        private Uri blobURI;
+        private Uri tableURI;
+        private Microsoft.Azure.Storage.Auth.StorageCredentials creds;
+        private StorageCredentials tableCreds;
         //Constructors
         public StorageAccount(string storageName)
         {
-            fileURI = new StorageUri(new Uri(string.Format("https://{0}.file.core.windows.net/", storageName)));
-            queueURI = new StorageUri(new Uri(string.Format("https://{0}.queue.core.windows.net/", storageName)));
-            blobURI = new StorageUri(new Uri(string.Format("https://{0}.blob.core.windows.net/", storageName)));
-            tableURI = new StorageUri(new Uri(string.Format("https://{0}.table.core.windows.net/", storageName)));
+            fileURI = new Uri(string.Format("https://{0}.file.core.windows.net/"));
+            queueURI = new Uri(string.Format("https://{0}.queue.core.windows.net/"));
+            blobURI = new Uri(string.Format("https://{0}.blob.core.windows.net/"));
+            tableURI = new Uri(string.Format("https://{0}.table.core.windows.net/"));
         }
         public StorageAccount(string storageName, StorageCredentialType type, string keyOrToken)
         {
-            fileURI = new  StorageUri(new Uri(string.Format("https://{0}.file.core.windows.net/", storageName)));
-            queueURI = new StorageUri(new Uri(string.Format("https://{0}.queue.core.windows.net/", storageName)));
-            blobURI = new StorageUri(new Uri(string.Format("https://{0}.blob.core.windows.net/", storageName)));
-            tableURI = new StorageUri(new Uri(string.Format("https://{0}.table.core.windows.net/", storageName)));
+            fileURI = new Uri(string.Format("https://{0}.file.core.windows.net/"));
+            queueURI = new  Uri(string.Format("https://{0}.queue.core.windows.net/"));
+            blobURI = new Uri(string.Format("https://{0}.blob.core.windows.net/"));
+            tableURI = new Uri(string.Format("https://{0}.table.core.windows.net/"));
             try
             {
                 if (type == StorageCredentialType.SAS)
-                    creds = new StorageCredentials(keyOrToken);
+                {
+                    creds = new Microsoft.Azure.Storage.Auth.StorageCredentials(keyOrToken);
+                    tableCreds = new StorageCredentials(keyOrToken);
+                }
+
                 else
-                    creds = new StorageCredentials(storageName, keyOrToken);
+                {
+                    creds = new Microsoft.Azure.Storage.Auth.StorageCredentials(storageName, keyOrToken);
+                    tableCreds = new StorageCredentials(storageName,keyOrToken);
+                }
+                    
 
             }
             catch (Exception e)
@@ -626,7 +636,7 @@ namespace AzureSimplifiedStd.Storage
         public void AddOrReplaceItemOnTable(TableRow row, string tableName)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -639,7 +649,7 @@ namespace AzureSimplifiedStd.Storage
         public void AddItemsToTable(List<TableRow> rows, string tableName)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -657,7 +667,7 @@ namespace AzureSimplifiedStd.Storage
         public List<TableRow> GetAllFromTable(string tableName)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -678,7 +688,7 @@ namespace AzureSimplifiedStd.Storage
         public List<TableRow> GetAllFromTablePartition(string tableName, string partition)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -700,7 +710,7 @@ namespace AzureSimplifiedStd.Storage
         {
             TableRow returnDict;
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -726,7 +736,7 @@ namespace AzureSimplifiedStd.Storage
         public void DeleteEntityFromTable(string tableName, string partitionKey, string rowKey)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -755,7 +765,7 @@ namespace AzureSimplifiedStd.Storage
         public List<TableRow> GetItemsWithSelectPropertiesFromTable(string tableName, string[] propertiesDesired)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -782,7 +792,7 @@ namespace AzureSimplifiedStd.Storage
         public bool CheckIfTableExists(string tableName)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -791,7 +801,7 @@ namespace AzureSimplifiedStd.Storage
         public void CreateTableIfNotExists(string tableName)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
@@ -801,49 +811,49 @@ namespace AzureSimplifiedStd.Storage
         public void DeleteTableIfExists(string tableName)
         {
             // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+            CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
             // Delete the table it if exists.
             table.DeleteIfExists();
         }
-        public TableSegment GetQueryFromTableInSegments(string tableName, string continueToken)
-        {
-            // Create the table client.
-            CloudTableClient tableClient = new CloudTableClient(tableURI, creds);
+        //public TableSegment GetQueryFromTableInSegments(string tableName, string continueToken)
+        //{
+        //    // Create the table client.
+        //    CloudTableClient tableClient = new CloudTableClient(tableURI, tableCreds);
 
-            // Create the CloudTable object that represents the "people" table.
-            CloudTable table = tableClient.GetTableReference(tableName);
+        //    // Create the CloudTable object that represents the "people" table.
+        //    CloudTable table = tableClient.GetTableReference(tableName);
 
-            // Initialize a default TableQuery to retrieve all the entities in the table.
-            TableQuery<DynamicTableEntity> tableQuery = new TableQuery<DynamicTableEntity>();
+        //    // Initialize a default TableQuery to retrieve all the entities in the table.
+        //    TableQuery<DynamicTableEntity> tableQuery = new TableQuery<DynamicTableEntity>();
 
-            // Initialize the continuation token to null to start from the beginning of the table.
-            TableContinuationToken continuationToken = null;
-            if (!string.IsNullOrEmpty(continueToken))
-            {
-                continuationToken = new TableContinuationToken();
-                XmlReader reader = XmlReader.Create(new StringReader(continueToken));
-                continuationToken.ReadXml(reader);
-            }
+        //    // Initialize the continuation token to null to start from the beginning of the table.
+        //    TableContinuationToken continuationToken = null;
+        //    if (!string.IsNullOrEmpty(continueToken))
+        //    {
+        //        continuationToken = new TableContinuationToken();
+        //        XmlReader reader = XmlReader.Create(new StringReader(continueToken));
+        //        continuationToken.ReadXml(reader);
+        //    }
 
 
-            // Retrieve a segment (up to 1,000 entities).
-            AsyncBox holder = new AsyncBox();
-            holder = QueryAsync(tableQuery, table, continuationToken).Result;
-            TableSegment seg = new TableSegment();
-            foreach (DynamicTableEntity entity in holder.tableQuerySegment.Results)
-            {
-                seg.AddRowToSegement(entity);
-            }
-            StringWriter sw = new StringWriter();
-            XmlWriter writer = XmlWriter.Create(sw);
-            continuationToken.WriteXml(writer);
-            seg.SetContinuationToken(sw.ToString());
+        //    // Retrieve a segment (up to 1,000 entities).
+        //    AsyncBox holder = new AsyncBox();
+        //    holder = QueryAsync(tableQuery, table, continuationToken).Result;
+        //    TableSegment seg = new TableSegment();
+        //    foreach (DynamicTableEntity entity in holder.tableQuerySegment.Results)
+        //    {
+        //        seg.AddRowToSegement(entity);
+        //    }
+        //    StringWriter sw = new StringWriter();
+        //    XmlWriter writer = XmlWriter.Create(sw);
+        //    continuationToken.WriteXml(writer);
+        //    seg.SetContinuationToken(sw.ToString());
 
-            return seg;
-        }
+        //    return seg;
+        //}
         private async System.Threading.Tasks.Task<AsyncBox> QueryAsync(TableQuery<DynamicTableEntity> tableQuery, CloudTable table, TableContinuationToken token)
         {
             AsyncBox temp = new AsyncBox();
