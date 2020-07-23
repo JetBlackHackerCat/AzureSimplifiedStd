@@ -1,0 +1,5 @@
+D:\Source Code\GitHub\NETAzureSimplified\Azure\AzureSimplifiedStd\bin\Debug\netstandard2.0\AzureSimplifiedStd.deps.json
+D:\Source Code\GitHub\NETAzureSimplified\Azure\AzureSimplifiedStd\bin\Debug\netstandard2.0\AzureSimplifiedStd.dll
+D:\Source Code\GitHub\NETAzureSimplified\Azure\AzureSimplifiedStd\obj\Debug\netstandard2.0\AzureSimplifiedStd.csprojAssemblyReference.cache
+D:\Source Code\GitHub\NETAzureSimplified\Azure\AzureSimplifiedStd\obj\Debug\netstandard2.0\AzureSimplifiedStd.AssemblyInfoInputs.cache
+D:\Source Code\GitHub\NETAzureSimplified\Azure\AzureSimplifiedStd\obj\Debug\netstandard2.0\AzureSimplifiedStd.AssemblyInfo.cs
