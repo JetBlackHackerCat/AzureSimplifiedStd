@@ -1,2 +1,2 @@
-# AzureSimplified
-Libraries that greatly simplify managing and interacting with Azure resources
+# AzureSimplifiedStd
+A .NET Standard library that greatly simplify managing and interacting with Azure resources
