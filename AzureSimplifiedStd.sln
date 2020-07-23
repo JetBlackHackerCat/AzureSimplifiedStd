@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureSimplifiedStd", "AzureSimplifiedStd.csproj", "{18ED27A1-9F8E-4383-8D7A-031E9664B542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureSimplifiedStd", "Simplified\AzureSimplifiedStd.csproj", "{520C8839-3DBA-4831-998F-059DBCC2C742}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18ED27A1-9F8E-4383-8D7A-031E9664B542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18ED27A1-9F8E-4383-8D7A-031E9664B542}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18ED27A1-9F8E-4383-8D7A-031E9664B542}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18ED27A1-9F8E-4383-8D7A-031E9664B542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520C8839-3DBA-4831-998F-059DBCC2C742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520C8839-3DBA-4831-998F-059DBCC2C742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520C8839-3DBA-4831-998F-059DBCC2C742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520C8839-3DBA-4831-998F-059DBCC2C742}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

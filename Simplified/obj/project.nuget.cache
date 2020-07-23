@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VXzKdS5gH8HRFqpzGSoK1msdgQs1WkroH/aPZ4XXcsCKyemVQeZBFxJFfqhQiBNC/SU571I+70fOlcmZ8dq3IQ==",
+  "dgSpecHash": "byHw3IrjKhcCeT5BKMvFD7D2BxnNwHZUPTf4oxCLfcs+4GEQSL/kgpnb3tHZ3ShrN2L3QOBNuaLWInRl+K+wDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\AzureSimplifiedStd\\AzureSimplifiedStd.csproj",
+  "projectFilePath": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\Simplified\\AzureSimplifiedStd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Malza\\.nuget\\packages\\microsoft.azure.cosmos.table\\1.0.7\\microsoft.azure.cosmos.table.1.0.7.nupkg.sha512",
     "C:\\Users\\Malza\\.nuget\\packages\\microsoft.azure.documentdb.core\\2.10.0\\microsoft.azure.documentdb.core.2.10.0.nupkg.sha512",

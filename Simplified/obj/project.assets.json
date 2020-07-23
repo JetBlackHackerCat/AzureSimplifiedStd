@@ -6524,11 +6524,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\AzureSimplifiedStd\\AzureSimplifiedStd.csproj",
+      "projectUniqueName": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\Simplified\\AzureSimplifiedStd.csproj",
       "projectName": "AzureSimplifiedStd",
-      "projectPath": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\AzureSimplifiedStd\\AzureSimplifiedStd.csproj",
+      "projectPath": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\Simplified\\AzureSimplifiedStd.csproj",
       "packagesPath": "C:\\Users\\Malza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\AzureSimplifiedStd\\obj\\",
+      "outputPath": "C:\\Users\\Malza\\Source\\Repos\\AzureSimplifiedStd\\Simplified\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
